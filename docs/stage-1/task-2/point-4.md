@@ -16,7 +16,7 @@ Redis выбран потому что:
 
 ## Пошаговая инструкция
 
-1. Проверяю, установлен ли Redis:
+1. Проверяю, установлен ли Redis сервер:
    ```bash
    redis-cli --version
    ```
@@ -24,6 +24,35 @@ Redis выбран потому что:
    ```bash
    brew install redis  # macOS
    sudo apt install redis-server  # Ubuntu/Debian
+   ```
+
+2. **ВАЖНО: Устанавливаю PHP расширение Redis:**
+   ```bash
+   pecl install redis
+   ```
+   Или через Homebrew на macOS:
+   ```bash
+   brew install php-redis
+   ```
+   Или для конкретной версии PHP:
+   ```bash
+   brew install php@8.4-redis
+   ```
+   
+   После установки проверяю, что расширение загружено:
+   ```bash
+   php -m | grep redis
+   ```
+   Должно вывести "redis".
+   
+   Если расширение не загружается автоматически, добавляю в php.ini:
+   ```ini
+   extension=redis.so
+   ```
+   
+   Нахожу php.ini:
+   ```bash
+   php --ini
    ```
 
 2. Запускаю Redis сервис:
@@ -107,18 +136,22 @@ Redis выбран потому что:
 12. Тестирую кэширование в Laravel:
     ```bash
     php artisan cache:clear
-    php artisan cache:put test_key "test_value" 60
-    php artisan cache:get test_key
     ```
+    Затем в tinker:
+    ```php
+    Cache::put('test_key', 'test_value', 60);
+    Cache::get('test_key');
+    ```
+    Должно вернуться "test_value".
 
 ## Что проверить после выполнения
 
-- [ ] Redis установлен и запущен
-- [ ] Redis отвечает на команду PING
-- [ ] Настройки в .env корректны
-- [ ] Laravel может подключиться к Redis
-- [ ] Кэширование работает (тест через tinker)
-- [ ] Нет ошибок при работе с Redis
+- [x] Redis установлен и запущен
+- [x] Redis отвечает на команду PING
+- [x] Настройки в .env корректны
+- [x] Laravel может подключиться к Redis
+- [x] Кэширование работает (тест через tinker)
+- [x] Нет ошибок при работе с Redis
 
 ## Дополнительные настройки
 
