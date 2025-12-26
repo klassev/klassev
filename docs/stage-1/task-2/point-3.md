@@ -40,22 +40,14 @@
 
 4. Создаю базу данных для проекта:
    ```sql
-   CREATE DATABASE klassev_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   CREATE DATABASE klassev;
    ```
 
-5. Создаю пользователя для приложения (опционально, для безопасности):
-   ```sql
-   CREATE USER 'klassev_user'@'localhost' IDENTIFIED BY 'strong_password';
-   GRANT ALL PRIVILEGES ON klassev_test.* TO 'klassev_user'@'localhost';
-   FLUSH PRIVILEGES;
-   ```
-   Заменяю 'strong_password' на надежный пароль.
-
-6. Проверяю, что база данных создана:
+5. Проверяю, что база данных создана:
    ```sql
    SHOW DATABASES;
    ```
-   Должна быть в списке klassev_test.
+   Должна быть в списке klassev
 
 7. Выхожу из MySQL:
    ```sql
@@ -71,9 +63,9 @@
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
-   DB_DATABASE=klassev_test
-   DB_USERNAME=klassev_user
-   DB_PASSWORD=strong_password
+   DB_DATABASE=
+   DB_USERNAME=
+   DB_PASSWORD=
    ```
    Или использую root, если не создавал отдельного пользователя.
 
@@ -95,31 +87,13 @@
 
 ## Что проверить после выполнения
 
-- [ ] MySQL/MariaDB установлен и запущен
-- [ ] База данных klassev_test создана
-- [ ] Пользователь создан (если использовал отдельного пользователя)
-- [ ] Настройки в .env корректны
-- [ ] Laravel может подключиться к базе данных
-- [ ] Нет ошибок при проверке подключения
+- [x] MySQL/MariaDB установлен и запущен
+- [x] База данных klassev_test создана
+- [x] Пользователь создан (если использовал отдельного пользователя)
+- [x] Настройки в .env корректны
+- [x] Laravel может подключиться к базе данных
+- [x] Нет ошибок при проверке подключения
 
-## Дополнительные настройки
-
-1. Настраиваю права доступа к файлам базы данных (если нужно):
-   ```bash
-   sudo chown -R mysql:mysql /var/lib/mysql
-   ```
-
-2. Настраиваю автозапуск MySQL:
-   ```bash
-   brew services start mysql  # macOS
-   sudo systemctl enable mysql  # Linux
-   ```
-
-3. Проверяю производительность и настройки:
-   ```sql
-   SHOW VARIABLES LIKE 'max_connections';
-   SHOW VARIABLES LIKE 'innodb_buffer_pool_size';
-   ```
 
 ## Возможные проблемы
 
