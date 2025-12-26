@@ -67,13 +67,13 @@
 
 7. Настраиваю почту (для разработки использую mailtrap или log):
    ```
-   MAIL_MAILER=log
-   MAIL_HOST=mailpit
+   MAIL_MAILER=smtp
+   MAIL_SCHEME=null
+   MAIL_HOST=mailhog
    MAIL_PORT=1025
    MAIL_USERNAME=null
    MAIL_PASSWORD=null
-   MAIL_ENCRYPTION=null
-   MAIL_FROM_ADDRESS="hello@example.com"
+   MAIL_FROM_ADDRESS="noreply@klassev.test"
    MAIL_FROM_NAME="${APP_NAME}"
    ```
 
@@ -100,11 +100,11 @@
 
 ## Что проверить после выполнения
 
-- [ ] Файл .env создан и содержит все необходимые параметры
-- [ ] APP_KEY сгенерирован и не пустой
-- [ ] Данные для подключения к БД корректны
-- [ ] .env добавлен в .gitignore (не коммитится в репозиторий)
-- [ ] Конфигурация загружается без ошибок
+- [x] Файл .env создан и содержит все необходимые параметры
+- [x] APP_KEY сгенерирован и не пустой
+- [x] Данные для подключения к БД корректны
+- [x] .env добавлен в .gitignore (не коммитится в репозиторий)
+- [x] Конфигурация загружается без ошибок
 
 ## Важные замечания
 
